@@ -1,5 +1,7 @@
 # NY Taxi Fare prediction interface
 
+![](images/snapshot.png)
+
 ## Setup
 
 The interface uses 4 APIs:
@@ -25,11 +27,33 @@ const algoliaPlacesApiKey = 'YOUR_SEARCH_ONLY_API_KEY';
 ## MapBox Maps and Directions APIs
 
 - Go to [MapBox](https://www.mapbox.com/) and create an account
-- Go to your [Account](https://account.mapbox.com/) and grad your `Access Token` then set it into the `script.js`
+- Go to your [Account](https://account.mapbox.com/) and grab your `Access Token` then set it into the `script.js`
 
 ```js
 //...
 const mapboxApiToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJjam83MjVrbWkwbWNoM3FwN2VhMm81eGRzIn0.yM3wkq5LJd8NeSYyPyTY4w';
 ````
+
+## Local development
+
+To check your setup, run the interface locally with `serve`. Then go to [http://localhost:8000](http://localhost:8000).
+
+## Deploy on GitHub Pages
+
+Your app is ready to go live!
+
+Create a new branch `gh-pages`:
+
+```bash
+git checkout -b gh-pages
+```
+
+Deploy your app on GitHub:
+
+```bash
+git push origin gh-pages
+```
+
+Your app will be visible shortly at `https://YOUR_GITHUB_NICKNAME.github.io/taxi-fare-interface`.
 
 
