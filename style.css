@@ -1,0 +1,16 @@
+#search {
+  z-index: 1;
+}
+
+.algolia-places {
+  width: auto;
+}
+
+#pickup_datetime {
+  background-color: white;
+}
+
+#fare {
+  bottom: 0px;
+  right: 0px;
+}

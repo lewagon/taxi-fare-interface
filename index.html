@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NY Taxi Fare prediction interface</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- MapBox -->
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css' rel='stylesheet' />
+  <!-- Flatpickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center p-2">NY taxi</h1>
+  </div>
+
+  <div class="position-relative">
+    <div class="position-absolute w-100" id="search">
+      <div class="container pt-4 d-flex justify-content-center">
+        <form class="form-inline">
+          <input type="text" class="form-control mb-2 mr-sm-2" id="pickup" placeholder="Pickup" name="pickup">
+          <input type="hidden" id="pickup_latitude" name="pickup_latitude">
+          <input type="hidden" id="pickup_longitude" name="pickup_longitude">
+          <input type="text" class="form-control mb-2 mr-sm-2" id="dropoff" placeholder="Dropoff" name="dropoff">
+          <input type="hidden" id="dropoff_latitude" name="dropoff_latitude">
+          <input type="hidden" id="dropoff_longitude" name="dropoff_longitude">
+          <input type="text" class="form-control mb-2 mr-sm-2" id="pickup_datetime" name="pickup_datetime">
+          <select id="passenger_count" name="passenger_count" class="custom-select mb-2 mr-sm-2">
+            <option value="1" selected>1 person</option>
+            <option value="2">2 persons</option>
+            <option value="3">3 persons</option>
+            <option value="4">4 persons</option>
+            <option value="5">5 persons</option>
+            <option value="6">6 persons</option>
+            <option value="7">7 persons</option>
+            <option value="8">8 persons</option>
+          </select>
+          <button type="submit" class="btn btn-primary mb-2" id="get-fare-button">Get fare</button>
+        </form>
+      </div>
+    </div>
+    <div id='map' style='width: 100%; height: calc(100vh - 88px - 64px);'></div>
+    <div id="fare" class="position-absolute bg-white p-4 d-none">
+      <p id="predicted-fare"></p>
+    </div>
+  </div>
+
+  <div class="footer d-flex align-items-center justify-content-end p-4">
+    <p>Made with ❤️ @
+      <a href="https://www.lewagon.com" target="_blank">
+        <img src="images/le-wagon-neg-color.png" alt="" width=100>
+      </a>
+    </p>
+  </div>
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <!-- Algolia places -->
+  <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+  <!-- MapBox -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
+  <!-- Flatpickr -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src='script.js'></script>
+</body>
+</html>
