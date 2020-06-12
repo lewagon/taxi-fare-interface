@@ -13,6 +13,18 @@ The interface uses 4 APIs:
 
 These APIs require credentials and the following steps will guide you to get them and set the interface with.
 
+### NY Taxi Fare prediction API
+
+Update the `script.js` to get prediction from your own API hosted on Heroku:
+
+```js
+// script.js
+
+const taxiFareApiUrl = 'https://YOUR_API_URL.herokuapp.com/predict_fare';
+```
+
+_Note: the following setup steps are optional as you can use Algolia and Mapbox credentials given by Le Wagon_
+
 ### Algolia Places Api
 
 - Go to [Algolia](https://www.algolia.com/) and create an account and follow the steps to create your first application
@@ -20,6 +32,8 @@ These APIs require credentials and the following steps will guide you to get the
 - Grab an `Application ID` and a `Search-Only API Key` then set them into the `script.js`
 
 ```javascript
+// script.js
+
 const algoliaPlacesApiAppId = 'YOUR_APPLICATION_ID';
 const algoliaPlacesApiKey = 'YOUR_SEARCH_ONLY_API_KEY';
 ````
@@ -31,7 +45,7 @@ const algoliaPlacesApiKey = 'YOUR_SEARCH_ONLY_API_KEY';
 
 ```js
 //...
-const mapboxApiToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJjam83MjVrbWkwbWNoM3FwN2VhMm81eGRzIn0.yM3wkq5LJd8NeSYyPyTY4w';
+const mapboxApiToken = 'YOUR_MAPBOX_API_ACCESS_TOKEN';
 ````
 
 ## Local development
