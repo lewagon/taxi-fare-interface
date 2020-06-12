@@ -25,7 +25,7 @@ const taxiFareApiUrl = 'https://YOUR_API_URL.herokuapp.com/predict_fare';
 
 _Note: the following setup steps are optional as you can use Algolia and Mapbox credentials given by Le Wagon_
 
-### Algolia Places Api
+### Algolia Places Api (optional)
 
 - Go to [Algolia](https://www.algolia.com/) and create an account and follow the steps to create your first application
 - Go to your [dashboard](https://www.algolia.com/) then to the API Keys tab
@@ -38,7 +38,7 @@ const algoliaPlacesApiAppId = 'YOUR_APPLICATION_ID';
 const algoliaPlacesApiKey = 'YOUR_SEARCH_ONLY_API_KEY';
 ````
 
-### MapBox Maps and Directions APIs
+### MapBox Maps and Directions APIs (optional)
 
 - Go to [MapBox](https://www.mapbox.com/) and create an account
 - Go to your [Account](https://account.mapbox.com/) and grab your `Access Token` then set it into the `script.js`
