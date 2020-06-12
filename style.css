@@ -14,3 +14,9 @@
   bottom: 0px;
   right: 0px;
 }
+
+#predicted-fare {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}

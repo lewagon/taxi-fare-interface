@@ -1,7 +1,7 @@
 const algoliaPlacesApiAppId = 'plU4N8HG6QWK';
 const algoliaPlacesApiKey = '1131438afb49f60a48ed468c5af189b8';
 const mapboxApiToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJjam83MjVrbWkwbWNoM3FwN2VhMm81eGRzIn0.yM3wkq5LJd8NeSYyPyTY4w';
-const taxiFareApiUrl = 'https://api.chucknorris.io/jokes/random';
+const taxiFareApiUrl = 'https://api-wagon.herokuapp.com/predict_fare';
 
 const displayMap = (start, stop) => {
   mapboxgl.accessToken = mapboxApiToken;
@@ -172,7 +172,7 @@ const dropoffAutocomplete = () => {
 const initFlatpickr = () => {
   flatpickr("#pickup_datetime", {
     enableTime: true,
-    dateFormat: "Y-m-d H:i",
+    dateFormat: "Y-m-d H:i:S",
     defaultDate: Date.now()
   });
 };
@@ -182,26 +182,27 @@ const predict = () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const data = {};
-      const inputs = document.querySelectorAll('input');
-      inputs.forEach((input) => {
-        data[input.name] = input.value;
-      });
-      // todo get select value
-      console.log(data);
+      const data = {
+        "pickup_latitude": parseFloat(document.getElementById('pickup_latitude').value),
+        "pickup_longitude": parseFloat(document.getElementById('pickup_longitude').value),
+        "dropoff_latitude": parseFloat(document.getElementById('dropoff_latitude').value),
+        "dropoff_longitude": parseFloat(document.getElementById('dropoff_longitude').value),
+        "passenger_count": parseInt(document.getElementById('passenger_count').value),
+        "pickup_datetime": `${document.getElementById('pickup_datetime').value} UTC`
+      };
       fetch(taxiFareApiUrl, {
-        method: 'GET', // or 'PUT'
+        method: 'POST', // or 'PUT'
         headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://api.chucknorris.io/jokes/random'
+          'Content-Type': 'application/json'
         },
-        // body: JSON.stringify(data),
+        body: JSON.stringify(data),
       })
       .then(response => response.json())
       .then(data => {
         document.getElementById('fare').classList.remove('d-none');
         const fareResult = document.getElementById('predicted-fare');
-        fareResult.innerText = data['value'];
+        const fare = Math.round(data['predictions'][0] * 100) / 100
+        fareResult.innerText = `$${fare}`;
       })
       .catch((error) => {
         console.error('Error:', error);
