@@ -183,11 +183,11 @@ const predict = () => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = {
-        "pickup_latitude": parseFloat(document.getElementById('pickup_latitude').value),
-        "pickup_longitude": parseFloat(document.getElementById('pickup_longitude').value),
-        "dropoff_latitude": parseFloat(document.getElementById('dropoff_latitude').value),
-        "dropoff_longitude": parseFloat(document.getElementById('dropoff_longitude').value),
-        "passenger_count": parseInt(document.getElementById('passenger_count').value),
+        "pickup_latitude": parseFloat(document.getElementById('pickup_latitude').value) || 40.747,
+        "pickup_longitude": parseFloat(document.getElementById('pickup_longitude').value) || -73.989,
+        "dropoff_latitude": parseFloat(document.getElementById('dropoff_latitude').value) || 40.802,
+        "dropoff_longitude": parseFloat(document.getElementById('dropoff_longitude').value) || -73.956,
+        "passenger_count": parseInt(document.getElementById('passenger_count').value) || 2,
         "pickup_datetime": `${document.getElementById('pickup_datetime').value} UTC`
       };
       fetch(taxiFareApiUrl, {
