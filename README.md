@@ -20,7 +20,7 @@ Update the `script.js` to get prediction from your own API hosted on Heroku:
 ```js
 // script.js
 
-const taxiFareApiUrl = 'https://YOUR_API_URL.herokuapp.com/predict_fare';
+const taxiFareApiUrl = 'https://YOUR_API_URL/predict_fare';
 ```
 
 _Note: the following setup steps are optional as you can use Algolia and Mapbox credentials given by Le Wagon_
@@ -50,7 +50,12 @@ const mapboxApiToken = 'YOUR_MAPBOX_API_ACCESS_TOKEN';
 
 ## Local development
 
-To check your setup, run the interface locally with `serve`. Then go to [http://localhost:8000](http://localhost:8000).
+To check your setup, run the interface locally with:
+ ```bash
+python -m http.server 5000 --bind 127.0.0.1
+ ```
+
+ Then go to [http://localhost:5000](http://localhost:5000).
 
 ## Deploy on GitHub Pages
 
