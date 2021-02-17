@@ -15,7 +15,7 @@ These APIs require credentials and the following steps will guide you to get the
 
 ### NY Taxi Fare prediction API
 
-Update the `script.js` to get prediction from your own API hosted on Heroku:
+Update the `script.js` to get prediction from your own API hosted on GCP:
 
 ```js
 // script.js
