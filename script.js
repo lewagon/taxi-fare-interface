@@ -182,6 +182,7 @@ const predict = () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
       const data = {
         "key": '2012-10-06 12:10:20.0000001',
         "pickup_latitude": parseFloat(document.getElementById('pickup_latitude').value) || 40.747,
@@ -191,17 +192,13 @@ const predict = () => {
         "passenger_count": parseInt(document.getElementById('passenger_count').value) || 2,
         "pickup_datetime": `${document.getElementById('pickup_datetime').value} UTC`
       };
-      let query = []
-      Object.keys(data).forEach((param) => {
-        query.push(`${param}=${data[param]}`)
-      })
-      const querystring = query.join('&')
-      const url = `${taxiFareApiUrl}?${querystring}`
-      fetch(url, {
-        method: 'GET',
+
+      fetch(`${taxiFareApiUrl}?${new URLSearchParams(data)}`, {
+        method: 'GET', // or 'PUT'
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        query: JSON.stringify(data),
       })
       .then(response => response.json())
       .then(data => {
