@@ -15,13 +15,17 @@ These APIs require credentials and the following steps will guide you to get the
 
 ### NY Taxi Fare prediction API
 
-Update the `script.js` to get prediction from your own API hosted on GCP:
+Update the `script.js` to get prediction from your own API hosted on GCP (make sure to use `https`, not `http`):
 
 ```js
 // script.js
 
 const taxiFareApiUrl = 'https://YOUR_API_URL/predict_fare';
 ```
+
+Hint: alternatively, you may use this Le Wagon Prediction API if you you do not have one in production:
+
+`https://taxifare.lewagon.ai/predict_fare`
 
 _Note: the following setup steps are optional as you can use Algolia and Mapbox credentials given by Le Wagon_
 
