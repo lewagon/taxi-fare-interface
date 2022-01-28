@@ -1,14 +1,13 @@
-const algoliaPlacesApiAppId = 'plU4N8HG6QWK';
-const algoliaPlacesApiKey = '1131438afb49f60a48ed468c5af189b8';
-const taxiFareApiUrl = 'http://localhost:8001/predict';
-// const mapboxApiToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJja2YzcmcyNDkwNXVpMnRtZGwxb2MzNWtvIn0.69leM_6Roh26Ju7Lqb2pwQ';
+const taxiFareApiUrl = 'http://localhost:8001/predict'; // replace with your API endpoint
+const centralCoordinates = [-74.00597, 40.71427]; // starting position [lng, lat]
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJja2YzcmcyNDkwNXVpMnRtZGwxb2MzNWtvIn0.69leM_6Roh26Ju7Lqb2pwQ';
+
 const displayMap = (start, stop) => {
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-    center: [-74.00597, 40.71427], // starting position [lng, lat]
+    center: centralCoordinates,
     zoom: 10 // starting zoom
   });
 
@@ -136,37 +135,38 @@ const displayMap = (start, stop) => {
   }
 };
 
-const handleOnChangePickup = (e) => {
-  const coordinates = e.suggestion.latlng;
-  document.querySelector('#pickup_latitude').value = coordinates.lat;
-  document.querySelector('#pickup_longitude').value = coordinates.lng;
-};
+const initGeocoder = (element, placeholder) => {
+  const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    placeholder: placeholder,
+    proximity: { // focus on NYC
+      longitude: centralCoordinates[0],
+      latitude: centralCoordinates[1]
+    },
+    countries: 'us'
+  });
+  geocoder.addTo(element);
+  return geocoder;
+}
 
 const pickupAutocomplete = () => {
-  const placesAutocompletePickup = places({
-    appId: algoliaPlacesApiAppId,
-    apiKey: algoliaPlacesApiKey,
-    container: document.querySelector('#pickup')
+  const geocoder = initGeocoder('#pickup', 'Pickup');
+  geocoder.on("result", event => {
+    const coordinates = event['result']['center'];
+    document.querySelector('#pickup_latitude').value = coordinates[1];
+    document.querySelector('#pickup_longitude').value = coordinates[0];
   });
-  placesAutocompletePickup.on('change', handleOnChangePickup);
-};
-
-const handleOnChangeDropoff = (e) => {
-  const coordinates = e.suggestion.latlng;
-  document.querySelector('#dropoff_latitude').value = coordinates.lat;
-  document.querySelector('#dropoff_longitude').value = coordinates.lng;
-  const start = [parseFloat(document.querySelector('#pickup_longitude').value), parseFloat(document.querySelector('#pickup_latitude').value)];
-  const stop = [coordinates.lng, coordinates.lat];
-  displayMap(start, stop)
 };
 
 const dropoffAutocomplete = () => {
-  const placesAutocompleteDropoff = places({
-    appId: algoliaPlacesApiAppId,
-    apiKey: algoliaPlacesApiKey,
-    container: document.querySelector('#dropoff')
+  const geocoder = initGeocoder('#dropoff', 'Drop-off');
+  geocoder.on("result", event => {
+    const coordinates = event['result']['center'];
+    document.querySelector('#dropoff_latitude').value = coordinates[1];
+    document.querySelector('#dropoff_longitude').value = coordinates[0];
+    const start = [parseFloat(document.querySelector('#pickup_longitude').value), parseFloat(document.querySelector('#pickup_latitude').value)];
+    displayMap(start, coordinates)
   });
-  placesAutocompleteDropoff.on('change', handleOnChangeDropoff);
 };
 
 const initFlatpickr = () => {

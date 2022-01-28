@@ -7,8 +7,7 @@
 The interface uses 4 APIs:
 
 - The NY Taxi Fare prediction API
-- The [Algolia Places](https://community.algolia.com/places/) API for address autocomplete
-- The [MapBox Maps API](https://docs.mapbox.com/mapbox-gl-js/api/) to display a map
+- The [MapBox Maps API](https://docs.mapbox.com/mapbox-gl-js/api/) to display a map and address autocomplete
 - The [MapBox Directions API](https://docs.mapbox.com/api/navigation/) to display the route on the map
 
 These APIs require credentials and the following steps will guide you to get them and set the interface with.
@@ -27,20 +26,7 @@ Hint: alternatively, you may use this Le Wagon Prediction API if you do not have
 
 `https://taxifare.lewagon.ai/predict`
 
-_Note: the following setup steps are optional as you can use Algolia and Mapbox credentials given by Le Wagon_
-
-### Algolia Places Api (optional)
-
-- Go to [Algolia](https://www.algolia.com/) and create an account and follow the steps to create your first application
-- Go to your [dashboard](https://www.algolia.com/) then to the API Keys tab
-- Grab an `Application ID` and a `Search-Only API Key` then set them into the `script.js`
-
-```javascript
-// script.js
-
-const algoliaPlacesApiAppId = 'YOUR_APPLICATION_ID';
-const algoliaPlacesApiKey = 'YOUR_SEARCH_ONLY_API_KEY';
-````
+_Note: the following setup steps are optional as you can use Mapbox credentials given by Le Wagon_
 
 ### MapBox Maps and Directions APIs (optional)
 
@@ -49,7 +35,7 @@ const algoliaPlacesApiKey = 'YOUR_SEARCH_ONLY_API_KEY';
 
 ```js
 //...
-const mapboxApiToken = 'YOUR_MAPBOX_API_ACCESS_TOKEN';
+mapboxgl.accessToken = 'YOUR_MAPBOX_API_ACCESS_TOKEN';
 ````
 
 ## Local development
