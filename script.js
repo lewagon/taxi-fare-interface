@@ -1,6 +1,7 @@
 const algoliaPlacesApiAppId = 'plU4N8HG6QWK';
 const algoliaPlacesApiKey = '1131438afb49f60a48ed468c5af189b8';
 const taxiFareApiUrl = 'http://localhost:8001/predict';
+// const mapboxApiToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJja2YzcmcyNDkwNXVpMnRtZGwxb2MzNWtvIn0.69leM_6Roh26Ju7Lqb2pwQ';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJja2YzcmcyNDkwNXVpMnRtZGwxb2MzNWtvIn0.69leM_6Roh26Ju7Lqb2pwQ';
 const displayMap = (start, stop) => {
@@ -177,7 +178,7 @@ const initFlatpickr = () => {
 };
 
 const predict = () => {
-  form = document.querySelector('form');
+  const form = document.querySelector('form');
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -199,7 +200,7 @@ const predict = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': taxiFareApiUrl
+          'Access-Control-Allow-Origin': '*'
         }
       })
       .then(response => response.json())
