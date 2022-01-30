@@ -4,7 +4,7 @@
 
 ## Setup
 
-The interface uses 4 APIs:
+The interface uses 3 APIs:
 
 - The NY Taxi Fare prediction API
 - The [MapBox Maps API](https://docs.mapbox.com/mapbox-gl-js/api/) to display a map and address autocomplete
@@ -41,11 +41,11 @@ mapboxgl.accessToken = 'YOUR_MAPBOX_API_ACCESS_TOKEN';
 ## Local development
 
 To check your setup, run the interface locally with:
- ```bash
-python -m http.server 5000 --bind 127.0.0.1
- ```
+```bash
+python -m http.server 5001
+```
 
- Then go to [http://localhost:5000](http://localhost:5000).
+Then go to [http://localhost:5001](http://localhost:5001)
 
 ## Deploy on GitHub Pages
 
