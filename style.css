@@ -20,3 +20,10 @@
   font-weight: bold;
   color: white;
 }
+
+.mapboxgl-ctrl-geocoder {
+  max-width: none;
+  width: 100%;
+  border: 1px solid lightgrey;
+  box-shadow: none;
+}
