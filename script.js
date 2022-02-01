@@ -61,7 +61,6 @@ const displayMap = (start, stop) => {
           }
         });
       }
-      // add turn instructions here at the end
     };
     req.send();
   }
