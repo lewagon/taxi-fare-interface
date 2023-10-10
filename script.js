@@ -208,11 +208,19 @@ const predict = () => {
       })
       .then(response => response.json())
       .then(data => {
-        document.getElementById('fare').classList.remove('d-none');
-        const fareResult = document.getElementById('predicted-fare');
-        const fare = Math.round(data['fare'] * 100) / 100
-        fareResult.innerText = `$${fare}`;
-      })
+          document.getElementById('fare').classList.remove('d-none');
+          const fareResult = document.getElementById('predicted-fare');
+          
+          // Check for both 'fare' and 'fare_amount' keys
+          if (!data.hasOwnProperty('fare') && !data.hasOwnProperty('fare_amount')) {
+            throw new Error("API response does not contain 'fare' or 'fare_amount' key");
+          }
+        
+          const fareValue = data['fare'] || data['fare_amount'];
+          
+          const fare = Math.round(fareValue * 100) / 100;
+          fareResult.innerText = `$${fare}`;
+        })
       .catch((error) => {
         console.error('Error:', error);
       });
