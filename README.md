@@ -14,12 +14,12 @@ These APIs require credentials and the following steps will guide you to get the
 
 ### NY Taxi Fare prediction API
 
-Update the `script.js` to get prediction from your own API hosted on GCP (make sure to use `https`, not `http`):
+Update the first line of `script.js` to get predictions from your own API hosted on GCP (make sure to use `https`, not `http`):
 
 ```js
 // script.js
 
-const taxiFareApiUrl = 'https://YOUR_API_URL/predict';
+let taxiFareApiUrl = 'https://YOUR_API_URL/predict';
 ```
 
 Hint: alternatively, you may use this Le Wagon Prediction API if you do not have one in production:
